@@ -1,7 +1,7 @@
 NAME = klein_gordon
 
 CC = g++
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror
 
 OBJ_DIR = ./obj/
 SRC_DIR = ./src/

@@ -7,7 +7,6 @@
 #include <cmath>
 #include <fstream>
 #include <string>
-#include <sstream>
 
 const int N_x = 500;                    //how many points there are on the 1D grid
 const int N_steps = 500;                //amount of time steps in the simulation

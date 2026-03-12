@@ -36,7 +36,7 @@ int main() {
         solution_time_step(phi, pi_half, n);
         if(n % steps_per_data_write == 0 || n == N_steps - 1)
         {
-            //check_energy_convervation(phi, pi_half, n);
+            check_energy_convervation(phi, pi_half, n);
             write_data(phi, n);
             //write_analytic_data(n);
             std::cout << "wrote data for step " << n << "\n";
