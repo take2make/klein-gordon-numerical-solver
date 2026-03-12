@@ -7,6 +7,7 @@
 #include <cmath>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 const int N_x = 500;                    //how many points there are on the 1D grid
 const int N_steps = 500;                //amount of time steps in the simulation
@@ -28,7 +29,7 @@ inline int idx(int i, int n) { return i * N_x + n; }
 void set_initial_conditions(std::vector<double>& phi);
 double laplace_phi(const std::vector<double>& phi, int i, int n);
 void set_pi_half(std::vector<double>& phi, std::vector<double>& pi_half, const std::vector<double>& pi0, double dt);
-void solution_step(std::vector<double>& phi, std::vector<double>& pi_half, int n);
+void solution_time_step(std::vector<double>& phi, std::vector<double>& pi_half, int n);
 void check_energy_convervation(const std::vector<double>& phi, const std::vector<double>& pi_half, int n);
 
 void write_analytic_data(int step);

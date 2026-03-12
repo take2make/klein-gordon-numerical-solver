@@ -2,7 +2,9 @@
 
 void write_data(const std::vector<double>& phi, int step) 
 {
-    std::ofstream file("dat/klein_gordon_output_" + std::to_string(step) + ".dat");
+    std::ostringstream oss;
+    oss << "dat/klein_gordon_output_" << step << ".dat";
+    std::ofstream file(oss.str());
     for (int i = 0; i < N_x; i++) 
     {
         file << i * dx << " " << phi[idx(i, step)] << "\n";

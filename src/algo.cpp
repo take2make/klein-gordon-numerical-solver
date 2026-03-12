@@ -8,18 +8,18 @@ double laplace_phi(const std::vector<double>& phi, int i, int n) {
 
 void set_pi_half(std::vector<double>& phi, std::vector<double>& pi_half, const std::vector<double>& pi0, double dt)
 {
-    for (int i = 0; i < N_x; ++i) {
+    for (int i = 0; i < N_x; i++) {
         double lap0 = laplace_phi(phi, i, 0);
-        pi_half[idx(i, 0)] = pi0[i] + 0.5 * dt * (lap0 - m*m * phi[idx(i, 0)]);
+        pi_half[idx(i, 0)] = pi0[i] + 0.5 * dt * (lap0 - m * m * phi[idx(i, 0)]);
     }
 }
 
-void solution_step(std::vector<double>& phi, std::vector<double>& pi_half, int n)
+void solution_time_step(std::vector<double>& phi, std::vector<double>& pi_half, int n)
 {
-    for (int i = 0; i < N_x; ++i) {
+    for (int i = 0; i < N_x; i++) {
         double lap = laplace_phi(phi, i, n);
         double pi_prev_half = (n == 0) ? pi_half[idx(i, 0)] : pi_half[idx(i, n - 1)];
-        double pi_new_half  = pi_prev_half + dt * (lap - m*m * phi[idx(i, n)]);
+        double pi_new_half  = pi_prev_half + dt * (lap - m * m * phi[idx(i, n)]);
         pi_half[idx(i, n)] = pi_new_half;
         phi[idx(i, n + 1)] = phi[idx(i, n)] + dt * pi_new_half;
     }
@@ -33,7 +33,7 @@ int main() {
     set_pi_half(phi, pi_half, std::vector<double>(N_x, 0.0), dt);
 
     for (int n = 0; n < N_steps; ++n) {
-        solution_step(phi, pi_half, n);
+        solution_time_step(phi, pi_half, n);
         if(n % steps_per_data_write == 0 || n == N_steps - 1)
         {
             //check_energy_convervation(phi, pi_half, n);
